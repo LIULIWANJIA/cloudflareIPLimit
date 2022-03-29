@@ -1,0 +1,31 @@
+
+# 此处为nginx配置修改部分
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+# 自行对照添加修改
+
+..............此处省略无需修改的部分...............
+
+# 此处为nginx配置修改部分Start
+http
+        {
+    map $HTTP_CF_CONNECTING_IP  $clientRealIp {
+    "" $remote_addr;
+    ~^(?P<firstAddr>[0-9.]+),?.*$    $firstAddr;
+}
+log_format main '$clientRealIp [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer"'
+                  '$http_user_agent $remote_addr $request_time';
+                  include mime.types;
+                  include proxy.conf;
+                  default_type  application/octet-stream;
+# 此处为nginx配置修改部分End
+
+..............此处省略无需修改的部分...............
+
+}
